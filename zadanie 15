@@ -3,8 +3,8 @@
 
 Нечетные двоичные числа, не превышающие 409610, в которых встречается не более одной серии из двух подряд идущих единиц. 
 Выводит на экран цифры числа, исключая единицы. Отдельно выводится прописью номер позиции, с которой начинается эта серия.
-digit_on = {'0': 'ноль', '1': 'один', '2': 'два', '3': 'три', '4': 'четыре', '5': 'пять', '6': 'шесть',
-                 '7': 'семь', '8': 'восемь', '9': 'девять'}
+d_db = {'0':'ноль', '1':'один'}
+
 bin_slova = []
 
 def process_binary_number(number):
@@ -16,26 +16,28 @@ def process_binary_number(number):
             break
 
     output = []
-    for idx, digit in enumerate(number_str):
-        if digit != '1':
-            output.append(digit_on[digit])
+    for idx, d in enumerate(number_str):
+        if d != '1':
+            output.append(d_db[d])
 
     print('Число без единиц:', ' '.join(output))
     print(f'Позиция начала серии "11": {start_idx}')
 
-
-with open("122.txt", "r", encoding='utf-8') as file:
-    for line_number, line in enumerate(file, start=1):
-        data = line.split()
-        print('Проверка', data)
-        for val in data:
-            if all('0' <= num_str <= '1' for num_str in val):
-                print('Значение val', val)
-                if int(val) % 2 == 1 and int(val) <= 4096:
-                    print(f'Обработка числа: {val}')
-                    process_binary_number(val)
-                    print('-' * 30)
-                else:
-                    print(f'Не удовлетворяет условиям: {data}')
+file = open("122.txt", "r")
+while True:
+    a = file.readline().split()
+    if not a:
+        print ("\nФайл 122.txt в директории проекта закончился.")
+        break
+    for val in a:
+        if all('0' <= num_str <= '1' for num_str in val):
+            print('Значение val', val)
+            if int(val) % 2 == 1 and int(val) <= 4096:
+                print(f'Обработка числа: {val}')
+                process_binary_number(val)
+                print('-' * 30)
             else:
-                print(f'Ошибка: Неверный формат числа')
+                print(f'Не удовлетворяет условиям: {a}')
+else:
+    for i in range (len(a)):
+        print(d_db)
