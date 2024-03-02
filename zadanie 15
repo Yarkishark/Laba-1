@@ -38,6 +38,5 @@ while True:
                 print('-' * 30)
             else:
                 print(f'Не удовлетворяет условиям: {a}')
-else:
-    for i in range (len(a)):
-        print(d_db)
+        else:
+            print(f'Ошибка: Неверный формат числа')
